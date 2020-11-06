@@ -6,10 +6,9 @@ import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class LibraryTest {
-
+internal class LibraryTest {
     @Nested
-    inner class ListBooks {
+    inner class Inventory {
         @Test
         internal fun `should return empty list given no books`() {
             val result = Library(emptyList()).inventory
@@ -18,8 +17,7 @@ class LibraryTest {
 
         @Test
         internal fun `should provide overview of the books`() {
-            val books : List<String> = listOf("bookA")
-
+            val books = listOf("bookA")
             val result = Library(books).inventory
 
             assertThat(result).isEqualTo(books)

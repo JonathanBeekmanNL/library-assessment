@@ -29,14 +29,14 @@ internal class LibraryTest {
     inner class Members {
         @Test
         internal fun `should return empty list given no members`() {
-            val result = Library(emptyList(), emptyList()).members
+            val result = Library(emptyList(), emptyList()).getMembers()
             assertThat(result).isEmpty()
         }
 
         @Test
         internal fun `should return list of members given members`() {
             val members = listOf("lidnr1")
-            val result = Library(emptyList(), members).members
+            val result = Library(emptyList(), members).getMembers()
             assertThat(result).isEqualTo(members)
         }
     }
@@ -52,6 +52,21 @@ internal class LibraryTest {
             val result = library.getInventory()
 
             assertThat(result).contains(book)
+            assertThat(result.size).isEqualTo(2)
+        }
+    }
+
+    @Nested
+    inner class AddMembers {
+        @Test
+        internal fun `should add a member to the library`() {
+            val member = "member1"
+            val library = Library(emptyList(), listOf("member2"))
+
+            library addMember member
+            val result = library.getMembers()
+
+            assertThat(result).contains(member)
             assertThat(result.size).isEqualTo(2)
         }
     }

@@ -6,8 +6,8 @@ class Library(
 ) {
     private val inventory = inventory.toMutableList()
 
-    fun addBook() {
-        inventory.add("joepie")
+    fun addBook(book : String) {
+        inventory.add(book)
     }
 
     fun getInventory() : List<String> = inventory

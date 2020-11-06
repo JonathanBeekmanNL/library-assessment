@@ -1,6 +1,7 @@
 package nl.rstraub.library.assessment
 
 import assertk.assertThat
+import assertk.assertions.contains
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Nested
@@ -44,11 +45,14 @@ internal class LibraryTest {
     inner class AddBooks {
         @Test
         internal fun `should add a book to the inventory`() {
-            val library = Library(emptyList(), emptyList())
+            val book = "book1"
+            val library = Library(listOf("book2"), emptyList())
 
-            library.addBook()
+            library.addBook(book)
+            val result = library.getInventory()
 
-            assertThat(library.getInventory().size).isEqualTo(1)
+            assertThat(result).contains(book)
+            assertThat(result.size).isEqualTo(2)
         }
     }
 }

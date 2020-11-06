@@ -2,7 +2,7 @@ package nl.rstraub.library.assessment
 
 class Library(
     inventory: List<String>,
-    members: List<String>
+    members: List<Member>
 ) {
     private val inventory = inventory.toMutableList()
     private val members = members.toMutableList()
@@ -13,10 +13,9 @@ class Library(
 
     fun getInventory() : List<String> = inventory
 
-
-    infix fun addMember(member: String) {
+    infix fun addMember(member: Member) {
         members.add(member)
     }
 
-    fun getMembers() : List<String> = members
+    fun getMembers() : List<Member> = members
 }

@@ -4,6 +4,7 @@ import assertk.assertThat
 import assertk.assertions.contains
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFailure
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -81,6 +82,14 @@ internal class LibraryTest {
             library.loan(member, "leuke boek")
 
             assertThat(member.getBooks()).contains("leuke boek")
+        }
+
+        @Test
+        internal fun `should throw exception given nonexistent member`() {
+            val member = Member("noexist")
+            val library = Library(listOf("leuke boek"), emptyList())
+
+            assertThat{library.loan(member, "leuke boek")}.isFailure()
         }
     }
 }

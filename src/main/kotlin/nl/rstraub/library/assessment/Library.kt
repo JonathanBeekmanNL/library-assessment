@@ -18,4 +18,8 @@ class Library(
     }
 
     fun getMembers() : List<Member> = members
+
+    fun loan(member: Member, book: String) {
+        member.add(book)
+    }
 }

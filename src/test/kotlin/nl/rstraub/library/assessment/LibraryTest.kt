@@ -23,6 +23,21 @@ internal class LibraryTest {
 
             assertThat(result).isEqualTo(books)
         }
+
+        @Nested
+        inner class AddBooks {
+            @Test
+            internal fun `should add a book to the inventory`() {
+                val book = "book1"
+                val library = Library(listOf("book2"), emptyList())
+
+                library addBook book
+                val result = library.getInventory()
+
+                assertThat(result).contains(book)
+                assertThat(result.size).isEqualTo(2)
+            }
+        }
     }
 
     @Nested
@@ -57,17 +72,15 @@ internal class LibraryTest {
     }
 
     @Nested
-    inner class AddBooks {
+    inner class Loan {
         @Test
-        internal fun `should add a book to the inventory`() {
-            val book = "book1"
-            val library = Library(listOf("book2"), emptyList())
+        internal fun `should loan book to member`() {
+            val member = Member("Leenmannetje")
+            val library = Library(listOf("leuke boek"), listOf(member))
 
-            library addBook book
-            val result = library.getInventory()
+            library.loan(member, "leuke boek")
 
-            assertThat(result).contains(book)
-            assertThat(result.size).isEqualTo(2)
+            assertThat(member.getBooks()).contains("leuke boek")
         }
     }
 }

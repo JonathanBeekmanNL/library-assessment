@@ -28,8 +28,13 @@ internal class MemberTest {
 
     @Test
     internal fun `should add book to member`() {
-        member add "Lotr"
-        assertThat(member.getBooks()).contains("Lotr")
-        assertThat(member.getBooks()).hasSize(1)
+        val book = "Lotr"
+
+        member add book
+
+        val result = member.getBooks()
+
+        assertThat(result).contains(book)
+        assertThat(result).hasSize(1)
     }
 }

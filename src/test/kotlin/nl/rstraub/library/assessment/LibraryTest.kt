@@ -48,7 +48,7 @@ internal class LibraryTest {
             val book = "book1"
             val library = Library(listOf("book2"), emptyList())
 
-            library.addBook(book)
+            library addBook book
             val result = library.getInventory()
 
             assertThat(result).contains(book)
